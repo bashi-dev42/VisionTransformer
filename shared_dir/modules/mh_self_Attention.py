@@ -68,7 +68,7 @@ class MultiHeadSelfAttention(nn.Module):
         ## (B, h, N, D//h) x (B, h, D//h, N) -> (B, h, N, N)
         dots = (q @ k_T) / self.sqrt_dh
         # Softmax
-        attn = F.softmax(dots, dim = 1)
+        attn = F.softmax(dots, dim = -1)
         attn = self.attn_drop(attn)
 
         # 加重和　(B, h, N, N) x (B, h, N, D//h) -> (B, h, N, D//h)
